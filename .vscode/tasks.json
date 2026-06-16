@@ -30,7 +30,22 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Auto Launch Debugger",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-Command",
+                "Start-Sleep -Seconds 3; code --goto '${workspaceFolder}/vehicle_power_distribution/build/run_tests.exe'"
+            ],
+            "dependsOn": "Build Tests",
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "problemMatcher": []
         }
     ]
 }
