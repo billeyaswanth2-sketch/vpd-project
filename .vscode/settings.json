@@ -1,5 +1,13 @@
 {
-    "testMate.cpp.test.executables": "vehicle_power_distribution/build/run_tests.exe",
+    "testMate.cpp.test.executables": [
+        {
+            "pattern": "vehicle_power_distribution/build/run_tests.exe",
+            "watchTimeoutSec": 5
+        }
+    ],
     "testMate.cpp.executeOnSave": true,
-    "testMate.cpp.test.parallelExecutionOfExecFiles": "naturally"
+    "testMate.cpp.test.parallelExecutionOfExecFiles": "naturally",
+    "files.watcherExclude": {
+        "**/build/**": false
+    }
 }
