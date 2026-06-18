@@ -10,9 +10,9 @@
                 "-B", "build",
                 "-G", "MinGW Makefiles",
                 "-DCMAKE_BUILD_TYPE=Debug",
-                "-DCMAKE_CXX_COMPILER=C:/msys64/ucrt64/bin/g++.exe",
-                "-DCMAKE_PREFIX_PATH=C:/msys64/ucrt64",
-                "-DGTest_DIR=C:/msys64/ucrt64/lib/cmake/GTest"
+                "-DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/g++.exe",
+                "-DCMAKE_PREFIX_PATH=C:/msys64/mingw64",
+                "-DGTest_DIR=C:/msys64/mingw64/lib/cmake/GTest"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/vehicle_power_distribution"
@@ -34,18 +34,40 @@
             "problemMatcher": ["$gcc"]
         },
         {
-            "label": "Auto Launch Debugger",
+            "label": "Run Tests Automatically",
             "type": "shell",
-            "command": "powershell",
-            "args": [
-                "-Command",
-                "Start-Sleep -Seconds 3; code --goto '${workspaceFolder}/vehicle_power_distribution/build/run_tests.exe'"
-            ],
+            "command": "C:/msys64/mingw64/bin/mingw32-make.exe",
+            "args": ["-C", "build"],
+            "options": {
+                "cwd": "${workspaceFolder}/vehicle_power_distribution"
+            },
             "dependsOn": "Build Tests",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
             "runOptions": {
                 "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Run GTest",
+            "type": "shell",
+            "command": "./build/run_tests.exe",
+            "args": ["--gtest_output=xml:build/test-results.xml"],
+            "options": {
+                "cwd": "${workspaceFolder}/vehicle_power_distribution"
             },
-            "problemMatcher": []
+            "dependsOn": "Run Tests Automatically",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
         }
     ]
 }
